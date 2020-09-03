@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  line-height: 20px;
+}
+
+body {
+  background-image: url("../img/webBackground.jpg");
+  background-size: cover;
+}
+
+.hero {
+  margin: 50px;
+}
+
+.hero h1 {
+  font-size: 4em;
+  font-family: "Press Start 2P";
+  text-align: center;
+  color: rgb(194, 219, 51);
+}
+
+.hero p {
+  margin: 50px auto;
+  width: 80%;
+  text-align: center;
+  font-family: "Press Start 2P";
+  color: white;
+}
+
+embed {
+  width: 0;
+  height: 0;
+}
+
+a {
+  display: block;
+  background-color: black;
+  border: 2px solid white;
+  padding: 2em;
+  width: 7em;
+  margin: 5em auto;
+  color: white;
+  font-family: "Press Start 2P";
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  /* box-shadow: 12px 12px 11px white; */
+  animation: iluminating 0.3s 1s infinite ease-out alternate;
+}
+
+@keyframes iluminating {
+  from {
+    color: rgb(194, 219, 51);
+    border-color: rgb(194, 219, 51);
+    background-color: rgb(24, 23, 23);
+  }
+
+  to {
+    color: white;
+    border-color: white;
+    background-color: black;
+  }
+}
+
+.board {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.counters {
+  width: 12em;
+  margin-top: 50px;
+  margin-right: 50px;
+  margin-left: -7em;
+  display: none;
+}
+
+.points-counter {
+  font-family: "Press Start 2P";
+  color: white;
+  border: 2px solid white;
+  padding: 20px;
+}
+
+.lifes-counter {
+  font-family: "Press Start 2P";
+  color: white;
+  border-right: 2px solid white;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  padding: 20px;
+}
+
+.bad-ending {
+  border: 5px solid white;
+  border-radius: 10%;
+  padding: 5% 0;
+  margin: 50px 20%;
+  background-image: url('../img/GameOverBackground.png');
+  background-size: cover;
+  background-color: rgb(15, 15, 15);
+  display: none;
+}
+
+.bad-ending h2 {
+  font-family: "Press Start 2P";
+  color: rgb(194, 219, 51);
+  text-align: center;
+  font-size: 4em;
+}
+
+.bad-ending article p {
+  color: white;
+  font-size: 1em;
+  width: 30em;
+  font-family: "Press Start 2P";
+}
+
+.bad-ending article {
+  margin-top: 5em;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* .lose-theme {
+  display: none;
+} */
+
+.good-ending {
+  border: 5px solid white;
+  border-radius: 10%;
+  padding: 5% 0;
+  margin: 50px 20%;
+  background-image: url('../img/goodBackground.png');
+  background-size: cover;
+  display: none
+}
+
+.good-ending h2 {
+  font-family: "Press Start 2P";
+  color: rgb(194, 219, 51);
+  text-align: center;
+  font-size: 3em;
+}
+
+.good-ending article p {
+  color: white;
+  font-size: 1em;
+  width: 30em;
+  font-family: "Press Start 2P";
+}
+
+.good-ending article {
+  margin-top: 5em;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* .win-theme {
+  display: none;
+} */
+
+.points-counter.final {
+  background-color: black;
+}
+
+.lifes-counter.final {
+  background-color: black;
+}
+
+.points-counter.final {
+  background-color: black;
+}
+
+.lifes-counter.final {
+  background-color: black;
+}
+
+canvas {
+  margin: 50px 0;
+  /* height: 600px;
+  width: 900px; */
+  display: none;
+  border: 3px solid white;
+}
