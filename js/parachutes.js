@@ -2,7 +2,7 @@ class Parachute {
     constructor(ctx, canvasWidth, canvasHeight, speed, points, imgName) {
         this.ctx = ctx
         this.position = {
-            x: Math.floor(860 * Math.random()),
+            x: Math.floor(840 * Math.random()),
             y: 0
         }
         this.size = {

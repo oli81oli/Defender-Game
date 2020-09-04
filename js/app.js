@@ -89,11 +89,11 @@ const game = {
 
     destroyCity() {
         if (this.cityCounter === 1) {
-            this.overlay.img.src = "img/cityBackground2.png"
+            this.overlay.imgName = "cityBackground2.png"
         } else if (this.cityCounter === 2) {
-            this.overlay.img.src = "img/cityBackground3.png"
+            this.overlay.imgName = "cityBackground3.png"
         } else if (this.cityCounter >= 3) {
-            this.overlay.img.src = "img/cityBackground4.png"
+            this.overlay.imgName = "cityBackground4.png"
         }
     },
 
@@ -318,12 +318,12 @@ const game = {
          document.onkeydown = e => {
              if (e.keyCode === 37) {
                  this.turret.move('left')
-                 this.turret.img.src = './img/player_left.png';
+                 this.turret.img.src = 'img/player_left.png';
                  this.turret.img.frames = 4;
              }
              if (e.keyCode === 39) {
                  this.turret.move('right')
-                 this.turret.img.src = './img/player_right.png';
+                 this.turret.img.src = 'img/player_right.png';
                  this.turret.img.frames = 4;
              }
          }
@@ -331,11 +331,11 @@ const game = {
              e.keyCode === 32 ? this.turret.shoot() : null
              e.keyCode === 32 ? this.audio.shoot.play() : null
              if (e.keyCode === 37) {
-                 this.turret.img.src = './img/player_shot.png';
+                 this.turret.img.src = 'img/player_shot.png';
                  this.turret.img.frames = 2;
              }
              if (e.keyCode === 39) {
-                 this.turret.img.src = './img/player_shot.png';
+                 this.turret.img.src = 'img/player_shot.png';
                  this.turret.img.frames = 2;
              }
          });

@@ -30,9 +30,9 @@ class Turret {
     }
     move(dir) {
         if (dir === 'left' && this.turretPos.x >= 10) {
-            this.turretPos.x -= 10
+            this.turretPos.x -= 15
         } else if (dir === 'right' && this.turretPos.x <= this.canvasSize.width - 60) {
-            this.turretPos.x += 10
+            this.turretPos.x += 15
         } else {
             null
         }
