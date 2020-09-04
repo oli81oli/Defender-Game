@@ -89,11 +89,11 @@ const game = {
 
     destroyCity() {
         if (this.cityCounter === 1) {
-            this.overlay.img.src = "./img/cityBackground2.png"
+            this.overlay.img.src = "img/cityBackground2.png"
         } else if (this.cityCounter === 2) {
-            this.overlay.img.src = "./img/cityBackground3.png"
+            this.overlay.img.src = "img/cityBackground3.png"
         } else if (this.cityCounter >= 3) {
-            this.overlay.img.src = "./img/cityBackground4.png"
+            this.overlay.img.src = "img/cityBackground4.png"
         }
     },
 
