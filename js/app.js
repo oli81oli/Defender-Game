@@ -73,7 +73,7 @@ const game = {
             this.winOrLoose()
         }, 1000 / this.FPS);
     },
-  
+
     drawAll() {
         this.background.draw()
         this.overlay.draw()
@@ -89,11 +89,11 @@ const game = {
 
     destroyCity() {
         if (this.cityCounter === 1) {
-            this.overlay.imgName = "cityBackground2.png"
+            this.overlay.img.src = "./img/cityBackground2.png"
         } else if (this.cityCounter === 2) {
-            this.overlay.imgName = "cityBackground3.png"
+            this.overlay.img.src = "./img/cityBackground3.png"
         } else if (this.cityCounter >= 3) {
-            this.overlay.imgName = "cityBackground4.png"
+            this.overlay.img.src = "./img/cityBackground4.png"
         }
     },
 
@@ -137,8 +137,8 @@ const game = {
         if (this.framesCounter % 500 === 0) {
             this.parachutes.push(new Parachute(this.ctx, this.canvasSize.w, this.canvasSize.h, 1.3, 50, "hostage.png"))
         }
-        if (this.framesCounter % 3000 === 0) {
-            this.boss.push(new Boss(this.ctx, this.canvasSize.w, this.canvasSize.h, 0.3, 500, "boss.gif"))
+        if (this.framesCounter % 2000 === 0) {
+            this.boss.push(new Boss(this.ctx, 0.3, 500, "boss.gif"))
         }
         if (this.framesCounter % 800 === 0) {
             this.kit.push(new Kit(this.ctx, 2, 1, "syringe.gif"))
@@ -155,7 +155,9 @@ const game = {
                 this.cityCounter += 1
                 this.audio.explosion.play()
                 this.explosion.push(new Explosion(this.ctx, elm.position.x, elm.position.y, 'explosionSheet.png'))
+
             } else if (elm.position.y >= 650) {
+                console.log(this.cityCounter)
                 this.lifesCounter -= elm.damage
                 this.cityCounter += 1
                 this.audio.explosion.play()
@@ -168,7 +170,7 @@ const game = {
             if (elm.position.y >= 640) {
                 this.audio.parachutesGain.play()
                 this.pointsCounter += elm.points
-                
+
             }
         })
         this.parachutes = this.parachutes.filter(para => para.position.y <= 640)
@@ -190,10 +192,10 @@ const game = {
     },
 
     reset() {
-        this.turret = new Turret(this.ctx, this.canvasSize.w / 2 -30, this.canvasSize.h - 100, this.canvasSize.w, this.canvasSize.h, "germantastico2.png")
+        this.turret = new Turret(this.ctx, this.canvasSize.w / 2 - 30, this.canvasSize.h - 100, this.canvasSize.w, this.canvasSize.h, "germantastico2.png")
         this.background = new Background(this.ctx, 0, 0, this.canvasSize.w, this.canvasSize.h, "gameBackground.jpeg")
         this.overlay = new Background(this.ctx, 0, 550, this.canvasSize.w, 150, "cityBackground.png")
-    }, 
+    },
 
     collision(elm1, elm2) {
         if (elm1.position.x < elm2.position.x + elm2.size.width &&
@@ -243,21 +245,13 @@ const game = {
     bossColission() {
         this.turret.shots.forEach(elm2 => {
             this.boss.forEach(elm1 => {
-                if (this.collision(elm1, elm2) === true) {
+                if (this.collision(elm1, elm2)) {
                     const elm2Index = this.turret.shots.indexOf(elm2)
                     this.turret.shots.splice(elm2Index, 1)
                     elm1.lifesCounter -= 1
                     if (elm1.lifesCounter === 1) {
                         this.pointsCounter += elm1.points
-                        if (this.cityCounter === 0) {
-                            this.pointsCounter += 600
-                        } else if (this.cityCounter === 1) {
-                            this.pointsCounter += 400
-                        } else if (this.cityCounter === 2) {
-                            this.pointsCounter += 200
-                        } else if (this.cityCounter >= 3) {
-                            this.pointsCounter -= 400
-                        }
+                        this.isDestroyed()
                     }
                 }
             })
@@ -314,32 +308,32 @@ const game = {
         })
     },
 
-     setEventListeners() {
-         document.onkeydown = e => {
-             if (e.keyCode === 37) {
-                 this.turret.move('left')
-                 this.turret.img.src = 'img/player_left.png';
-                 this.turret.img.frames = 4;
-             }
-             if (e.keyCode === 39) {
-                 this.turret.move('right')
-                 this.turret.img.src = 'img/player_right.png';
-                 this.turret.img.frames = 4;
-             }
-         }
-         document.addEventListener("keyup", e => {
-             e.keyCode === 32 ? this.turret.shoot() : null
-             e.keyCode === 32 ? this.audio.shoot.play() : null
-             if (e.keyCode === 37) {
-                 this.turret.img.src = 'img/player_shot.png';
-                 this.turret.img.frames = 2;
-             }
-             if (e.keyCode === 39) {
-                 this.turret.img.src = 'img/player_shot.png';
-                 this.turret.img.frames = 2;
-             }
-         });
-     },
+    setEventListeners() {
+        document.onkeydown = e => {
+            if (e.keyCode === 37) {
+                this.turret.move('left')
+                this.turret.img.src = 'img/player_left.png';
+                this.turret.img.frames = 4;
+            }
+            if (e.keyCode === 39) {
+                this.turret.move('right')
+                this.turret.img.src = 'img/player_right.png';
+                this.turret.img.frames = 4;
+            }
+        }
+        document.addEventListener("keyup", e => {
+            e.keyCode === 32 ? this.turret.shoot() : null
+            e.keyCode === 32 ? this.audio.shoot.play() : null
+            if (e.keyCode === 37) {
+                this.turret.img.src = 'img/player_shot.png';
+                this.turret.img.frames = 2;
+            }
+            if (e.keyCode === 39) {
+                this.turret.img.src = 'img/player_shot.png';
+                this.turret.img.frames = 2;
+            }
+        });
+    },
 
     winOrLoose() {
         if (this.lifesCounter === 0) {
@@ -348,13 +342,13 @@ const game = {
 
             const audio = document.querySelector('audio')
             document.querySelector('.hero').removeChild(audio)
-            
+
             const winTheme = document.createElement('audio')
             winTheme.setAttribute("src", "bso/loseTheme.mp3")
             winTheme.setAttribute("loop", true)
             winTheme.setAttribute("autoplay", true)
             document.querySelector('.hero').appendChild(winTheme)
-
+            
             this.restartGame()
         }
         this.boss.forEach(elm => {
@@ -370,10 +364,10 @@ const game = {
                 loseTheme.setAttribute("loop", true)
                 loseTheme.setAttribute("autoplay", true)
                 document.querySelector('.hero').appendChild(loseTheme)
-
+                
                 this.restartGame()
 
-            } 
+            }
         })
     },
 

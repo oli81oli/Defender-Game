@@ -1,5 +1,5 @@
 class Boss {
-    constructor(ctx, canvasWidth, canvasHeight, speed, points, imgName) {
+    constructor(ctx, speed, points, imgName) {
         this.ctx = ctx
         this.position = {
             x: Math.floor(390 * Math.random()),
@@ -9,10 +9,7 @@ class Boss {
             width: 400,
             height: 300
         }
-        this.canvasSize = {
-            width: canvasWidth,
-            height: canvasHeight
-        }
+       
 
         this.img = new Image()
         this.img.src = `img/${imgName}`
